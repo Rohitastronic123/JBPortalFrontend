@@ -41,7 +41,7 @@ module.exports = "\n<router-outlet></router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"carouselExample\" class=\"carousel slide\" data-bs-ride=\"carousel\">\n    <div class=\"carousel-inner\">\n      <div class=\"carousel-item active\">\n        <img src=\"\\assets\\images\\job1.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 1\">\n      </div>\n      <div class=\"carousel-item\">\n        <img src=\"\\assets\\images\\19721.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 2\">\n      </div>\n      <div class=\"carousel-item\">\n        <img src=\"\\assets\\images\\job2.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 3\">\n      </div>\n      <!-- <div class=\"carousel-item\">\n        <img src=\"../../assets/images/jobs1.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 3\">\n      </div> -->\n    </div>\n    <button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#carouselExample\" data-bs-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"visually-hidden\">Previous</span>\n    </button>\n    <button class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#carouselExample\" data-bs-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"visually-hidden\">Next</span>\n    </button>\n  </div>\n  "
+module.exports = "<div id=\"carouselExample\" class=\"carousel slide\" data-bs-ride=\"carousel\">\n    <div class=\"carousel-inner\">\n      <div class=\"carousel-item active\">\n        <img src=\"./assets/images/job1.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 1\">\n      </div>\n      <div class=\"carousel-item\">\n        <img src=\"./assets/images/19721.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 2\">\n      </div>\n      <div class=\"carousel-item\">\n        <img src=\"./assets/images/job2.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 3\">\n      </div>\n      <!-- <div class=\"carousel-item\">\n        <img src=\"../../assets/images/jobs1.jpg\" class=\"d-block w-100\" style=\"height: 400px;\" alt=\"Slide 3\">\n      </div> -->\n    </div>\n    <button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#carouselExample\" data-bs-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"visually-hidden\">Previous</span>\n    </button>\n    <button class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#carouselExample\" data-bs-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"visually-hidden\">Next</span>\n    </button>\n  </div>\n  "
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div id=\"carouselExample\" class=\"carousel slide\" data-bs-r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"custom-toolbar\">\n  <span class=\"logo\">\n    <img src=\"\\assets\\images\\logo.gif\" alt=\"\" />\n  </span>\n\n  <span class=\"spacer\"></span>\n\n  <!-- For larger screens, display buttons directly -->\n  <div class=\"desktop-nav\">\n    <button mat-button class=\"nav-button\" routerLink=\"/about\">About</button>\n    <button mat-button class=\"nav-button\" routerLink=\"/contact\">Contact</button>\n    <button mat-button class=\"nav-button\" (click)=\"openLoginDialog()\">Login</button>\n    <button mat-button class=\"nav-button\" (click)=\"openSignupDialog()\">Signup</button>\n  </div>\n\n  <!-- Menu button for mobile -->\n  <span mat-button [matMenuTriggerFor]=\"menu\" class=\"menu-button\" (click)=\"toggleMenu()\">\n    <img [src]=\"isMenuOpen ? '/assets/images/cross.png' : '/assets/images/menu.png'\" \n         style=\"width: 30px; height: 30px;\" \n         [@fadeInOut]>\n  </span>\n  \n  <mat-menu #menu=\"matMenu\">\n    <button mat-menu-item routerLink=\"/about\">About</button>\n    <button mat-menu-item routerLink=\"/contact\">Contact</button>\n    <button mat-menu-item (click)=\"openLoginDialog()\">Login</button>\n    <button mat-menu-item (click)=\"openSignupDialog()\">Signup</button>\n  </mat-menu>\n</mat-toolbar>\n<app-carousel></app-carousel>\n<app-jbcard></app-jbcard>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"custom-toolbar\">\n  <span class=\"logo\">\n    <img src=\"./assets/images/logo.gif\" alt=\"\" />\n  </span>\n\n  <span class=\"spacer\"></span>\n\n  <!-- For larger screens, display buttons directly -->\n  <div class=\"desktop-nav\">\n    <button mat-button class=\"nav-button\" routerLink=\"/about\">About</button>\n    <button mat-button class=\"nav-button\" routerLink=\"/contact\">Contact</button>\n    <button mat-button class=\"nav-button\" (click)=\"openLoginDialog()\">Login</button>\n    <button mat-button class=\"nav-button\" (click)=\"openSignupDialog()\">Signup</button>\n  </div>\n\n  <!-- Menu button for mobile -->\n  <span mat-button [matMenuTriggerFor]=\"menu\" class=\"menu-button\" (click)=\"toggleMenu()\">\n    <img [src]=\"isMenuOpen ? './assets/images/cross.png' : './assets/images/menu.png'\" \n         style=\"width: 30px; height: 30px;\" \n         [@fadeInOut]>\n  </span>\n  \n  <mat-menu #menu=\"matMenu\">\n    <button mat-menu-item routerLink=\"/about\">About</button>\n    <button mat-menu-item routerLink=\"/contact\">Contact</button>\n    <button mat-menu-item (click)=\"openLoginDialog()\">Login</button>\n    <button mat-menu-item (click)=\"openSignupDialog()\">Signup</button>\n  </mat-menu>\n</mat-toolbar>\n<app-carousel></app-carousel>\n<app-jbcard></app-jbcard>\n"
 
 /***/ }),
 
@@ -129,6 +129,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _signup_signup_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./signup/signup.component */ "./src/app/signup/signup.component.ts");
 /* harmony import */ var _resume_builder_resume_builder_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./resume-builder/resume-builder.component */ "./src/app/resume-builder/resume-builder.component.ts");
 /* harmony import */ var _resume_builder2_resume_builder2_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./resume-builder2/resume-builder2.component */ "./src/app/resume-builder2/resume-builder2.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
 
 
 
@@ -138,20 +140,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    // Default route
     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
     { path: 'signup', component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_5__["SignupComponent"] },
     { path: 'resume-builder', component: _resume_builder_resume_builder_component__WEBPACK_IMPORTED_MODULE_6__["ResumeBuilderComponent"] },
     { path: 'app-resume-builder2', component: _resume_builder2_resume_builder2_component__WEBPACK_IMPORTED_MODULE_7__["ResumeBuilder2Component"] }
-    // Additional routes can be added here as needed
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+        providers: [{ provide: _angular_common__WEBPACK_IMPORTED_MODULE_8__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_8__["HashLocationStrategy"] }]
     })
 ], AppRoutingModule);
 
@@ -488,21 +489,21 @@ let JBCardComponent = class JBCardComponent {
                 title: 'Build Your Resume',
                 subtitle: 'Improve your skill',
                 description: 'Best time to create future.',
-                image: '/assets/images/resume.jpg',
+                image: './assets/images/resume.jpg',
                 link: '/app-resume-builder2'
             },
             {
                 title: 'Card Title 2',
                 subtitle: 'Subtitle 2',
                 description: 'This is a description for Card 2.',
-                image: '/assets/images/findjob.jpg',
+                image: './assets/images/findjob.jpg',
                 link: 'https://example.com/page2'
             },
             {
                 title: 'Card Title 3',
                 subtitle: 'Subtitle 3',
                 description: 'This is a description for Card 3.',
-                image: '/assets/images/interview.jpg',
+                image: './assets/images/interview.jpg',
                 link: 'https://example.com/page3'
             }
         ];
