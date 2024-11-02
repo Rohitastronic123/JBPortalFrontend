@@ -7,8 +7,8 @@ import { ResumeBuilderComponent } from './resume-builder/resume-builder.componen
 import { ResumeBuilder2Component } from './resume-builder2/resume-builder2.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route
-  { path: 'home', component: HomeComponent },
+  // Default route
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'resume-builder', component: ResumeBuilderComponent },

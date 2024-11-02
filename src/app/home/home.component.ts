@@ -20,10 +20,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
 })
 export class HomeComponent implements OnInit {
-
+ 
   constructor(public dialog: MatDialog) {}
   isMenuOpen = false;
-
+   a ="\assets\images\cross.png";
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
