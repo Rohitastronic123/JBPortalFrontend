@@ -32,6 +32,9 @@
      <button  mat-menu-item *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     <button mat-menu-item  *ngIf="!isLoggedIn" (click)="openSignupDialog()">Signup</button>
   </mat-menu>
+  <div class="progress-container">
+    <div class="progress-bar" [style.width.%]="scrollProgress"></div>
+  </div>
 </mat-toolbar>
 
 <app-carousel></app-carousel>

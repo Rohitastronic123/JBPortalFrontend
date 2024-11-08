@@ -59,6 +59,22 @@ background-color: #0047AB;
     background-color: #2980b9;
   }
 }
+.progress-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2); /* Light background */
+  overflow: hidden;
+  
+  .progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #ff4081; /* Color for the progress */
+    transition: width 0.25s ease;
+  }
+}
 .custom-hr {
   border: none;
   text-align: center;

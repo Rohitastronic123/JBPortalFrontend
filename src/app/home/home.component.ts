@@ -30,6 +30,14 @@ export class HomeComponent implements OnInit {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+  scrollProgress: number = 0;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    this.scrollProgress = (scrollTop / docHeight) * 100;
+  }
    // Listens for click events on the window
    @HostListener('document:click', ['$event'])
    handleClick(event: MouseEvent) {
