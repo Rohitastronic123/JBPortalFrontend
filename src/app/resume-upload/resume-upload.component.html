@@ -1,0 +1,54 @@
+<div>
+  <!-- Step 1: Upload Resume -->
+  <h2>Upload Resume</h2>
+  
+  <div class="file-upload-container" (click)="fileInput.click()">
+    <i class="fas fa-upload file-icon"></i>
+    <span class="file-name">{{ selectedFileName || 'Choose a file' }}</span>
+  </div>
+  <input #fileInput type="file" (change)="onFileSelect($event)" />
+  
+  <!-- Step 2: Display extracted data in editable form, only after resume is uploaded -->
+  <div *ngIf="resumeUploaded">
+    <h2>Edit Extracted Resume Data</h2>
+    <form [formGroup]="resumeForm" (ngSubmit)="onGenerateResume()">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" formControlName="name" placeholder="Name" />
+      </div>
+
+      <div>
+        <label for="jobTitle">Job Title</label>
+        <input id="jobTitle" formControlName="jobTitle" placeholder="Job Title" />
+      </div>
+
+      <div>
+        <label for="contactNo">Contact Number</label>
+        <input id="contactNo" formControlName="contactNo" placeholder="Phone" />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" placeholder="Email" />
+      </div>
+
+      <div>
+        <label for="address">Address</label>
+        <input id="address" formControlName="address" placeholder="Address" />
+      </div>
+
+      <div>
+        <label for="socialProfile">LinkedIn Profile</label>
+        <input id="socialProfile" formControlName="socialProfile" placeholder="LinkedIn URL" />
+      </div>
+
+      <div>
+        <label for="professionalSummary">Professional Summary</label>
+        <textarea id="professionalSummary" formControlName="professionalSummary" placeholder="Summary"></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="!resumeForm.valid">Generate Resume PDF</button>
+    </form>
+  </div>
+</div>

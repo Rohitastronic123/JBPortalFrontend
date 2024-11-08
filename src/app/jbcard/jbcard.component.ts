@@ -36,16 +36,16 @@ export class JBCardComponent implements OnInit {
       link: '/app-resume' 
     },
     {
-      title: 'Card Title 2',
-      subtitle: 'Subtitle 2',
-      description: 'This is a description for Card 2.',
-      image: './assets/images/findjob.jpg',
+      title: 'Job Search',
+      subtitle: 'Find your future',
+      description: 'Best place for job search.',
+      image: './assets/images/naukri.jpg',
       link: 'https://example.com/page2'
     },
     {
-      title: 'Card Title 3',
-      subtitle: 'Subtitle 3',
-      description: 'This is a description for Card 3.',
+      title: 'Job Interview',
+      subtitle: 'Check your skills',
+      description: 'Check your mirror image.',
       image: './assets/images/interview.jpg',
       link: 'https://example.com/page3'
     }

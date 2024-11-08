@@ -1,0 +1,100 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="over" [(opened)]="isSidebarOpen" class="sidebar">
+    <div class="sidebar-content">
+      <h2  (click)="navigateTo('')">Menu</h2>
+      <button mat-button (click)="navigateTo('profile')">Profile</button>
+      <!-- <button mat-button (click)="navigateTo('resumeupdate')">Update Resume</button> -->
+      <button mat-button (click)="navigateTo('jobs')">Job Listings</button>
+      <button mat-button (click)="navigateTo('applications')">Applications</button>
+      <button mat-button (click)="navigateTo('messages')">Messages</button>
+      <button mat-button (click)="navigateTo('messages')">Logout</button>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content class="main-content">
+    <button mat-icon-button class="sidebar-toggle" (click)="isSidebarOpen = !isSidebarOpen">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Welcome, {{ userName }}!</h1>
+        <p>Explore new opportunities and manage your applications.</p>
+      </div>
+
+      <div class="dashboard-content">
+        <!-- Profile Summary Card -->
+        <mat-card class="profile-card animate-card">
+          <mat-card-header>
+            <mat-card-title>Your Profile Summary</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>Jobs Applied:</strong> 12</p>
+            <p><strong>Interviews Scheduled:</strong> 3</p>
+            <button mat-button color="primary" (click)="goToProfile()">View Profile</button>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Job Listings -->
+        <mat-card class="jobs-card animate-card">
+          <mat-card-header>
+            <mat-card-title>Latest Job Listings</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="job-listing" *ngFor="let job of jobs">
+              <h3>{{ job.title }}</h3>
+              <p>{{ job.company }}</p>
+              <p><strong>Location:</strong> {{ job.location }}</p>
+              <button mat-button color="accent" (click)="applyToJob(job.id)">Apply</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Applications Section -->
+        <mat-card class="applications-card animate-card">
+          <mat-card-header>
+            <mat-card-title>Your Applications</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table mat-table [dataSource]="applications" class="mat-elevation-z8">
+              <ng-container matColumnDef="jobTitle">
+                <th mat-header-cell *matHeaderCellDef> Job Title </th>
+                <td mat-cell *matCellDef="let application"> {{ application.jobTitle }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let application"> {{ application.status }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let application">
+                  <button mat-button (click)="viewApplication(application.id)">View</button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Messages Section -->
+        <mat-card class="messages-card animate-card">
+          <mat-card-header>
+            <mat-card-title>Messages</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div *ngFor="let message of messages" class="message">
+              <p><strong>{{ message.sender }}:</strong> {{ message.content }}</p>
+              <button mat-button color="primary" (click)="viewMessage(message.id)">View</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

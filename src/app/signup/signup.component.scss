@@ -4,7 +4,7 @@
 }
 ::ng-deep .mat-dialog-container {
   
-  background: #5795ec; 
+  background: #fff; 
   color: #000000; 
   
 }
@@ -80,7 +80,7 @@ mat-dialog-actions {
 mat-dialog-content {
   max-height: 400px; // Adjust for content height as needed
   overflow-y: auto;
-  background: #5795ec; // Dialog background color
+  background: #fff; 
   color: #000000; // Dialog text color
   padding: 16px; // Padding for dialog content
 

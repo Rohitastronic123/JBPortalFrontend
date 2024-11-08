@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="custom-toolbar">
   <span class="logo">
-    <img src="./assets/images/logo.gif" alt="" />
+    <img src="./assets/images/logo.gif" alt="Logo" />
   </span>
 
   <span class="spacer"></span>
@@ -8,10 +8,12 @@
   <!-- For larger screens, display buttons directly -->
   <div class="desktop-nav">
     <button mat-button class="nav-button" routerLink="/app-resume">Resume</button>
-    <button mat-button class="nav-button" routerLink="/about">About</button>
-    <button mat-button class="nav-button" routerLink="/contact">Contact</button>
-    <button mat-button class="nav-button" (click)="openLoginDialog()">Login</button>
-    <button mat-button class="nav-button" (click)="openSignupDialog()">Signup</button>
+    <button mat-button class="nav-button" (click)="scrollToAbout()">About</button>
+    <button mat-button class="nav-button" (click)="scrollToContact()">Contact</button>
+    <button mat-button class="nav-button" *ngIf="!isLoggedIn" (click)="openLoginDialog()">Login</button>
+    <button  mat-button class="nav-button"  *ngIf="isLoggedIn" routerLink="/dashboard">Dashboard</button>
+    <button mat-button class="nav-button" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    <button mat-button class="nav-button" *ngIf="!isLoggedIn" (click)="openSignupDialog()">Signup</button>
   </div>
 
   <!-- Menu button for mobile -->
@@ -23,11 +25,20 @@
   
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="/app-resume">Resume</button>
-    <button mat-menu-item routerLink="/about">About</button>
-    <button mat-menu-item routerLink="/contact">Contact</button>
-    <button mat-menu-item (click)="openLoginDialog()">Login</button>
-    <button mat-menu-item (click)="openSignupDialog()">Signup</button>
+    <button mat-menu-item (click)="scrollToAbout()">About</button>
+    <button mat-menu-item (click)="scrollToContact()">Contact</button>
+    <button mat-menu-item  *ngIf="!isLoggedIn" (click)="openLoginDialog()">Login</button>
+    <button  mat-menu-item *ngIf="isLoggedIn" routerLink="/dashboard">Dashboard</button>
+     <button  mat-menu-item *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    <button mat-menu-item  *ngIf="!isLoggedIn" (click)="openSignupDialog()">Signup</button>
   </mat-menu>
 </mat-toolbar>
+
 <app-carousel></app-carousel>
 <app-jbcard></app-jbcard>
+
+<hr class="custom-hr">
+<app-about id="about"></app-about>
+
+<hr class="custom-hr-contact">
+<app-contact id="contact"></app-contact>

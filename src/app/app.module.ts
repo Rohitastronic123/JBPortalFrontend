@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { MatCheckboxModule, MatDialogModule, MatToolbarModule } from '@angular/material';
+import { MatCheckboxModule, MatDialogModule, MatProgressSpinnerModule, MatSpinner, MatTableModule, MatToolbarModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +24,13 @@ import { MatCardModule } from '@angular/material/card';
 import { ResumeBuilderComponent } from './resume-builder/resume-builder.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { ResumeBuilder2Component } from './resume-builder2/resume-builder2.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProfileComponent } from './profile/profile.component';
+import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +40,19 @@ import { ResumeBuilder2Component } from './resume-builder2/resume-builder2.compo
     CarouselComponent,
     JBCardComponent,
     ResumeBuilderComponent,
-    ResumeBuilder2Component
+    ResumeBuilder2Component,
+    DashboardComponent,
+    AboutComponent,
+    ContactComponent,
+    ProfileComponent,
+    ResumeUploadComponent
   ],
   imports: [
     BrowserModule,
+    MatProgressSpinnerModule,
+     // Required for ngx-toastr animations
+     MatTableModule,
+     MatSnackBarModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,

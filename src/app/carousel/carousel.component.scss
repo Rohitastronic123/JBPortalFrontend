@@ -1,6 +1,7 @@
 .carousel-inner img {
+  margin-top:65px;
     width: 100%;
-    height: auto; /* Adjust height as needed */
+    height: 50%; /* Adjust height as needed */
   }
   
   .carousel-control-prev-icon,
@@ -24,6 +25,7 @@
   .carousel-control-prev,
   .carousel-control-next {
     width: 5%;
+    background-color: whitesmoke;
   }
   #carouselExample{
     margin-top: 1px;

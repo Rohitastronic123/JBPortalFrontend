@@ -1,8 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,8 +21,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
 })
 export class HomeComponent implements OnInit {
- 
-  constructor(public dialog: MatDialog) {}
+  isLoggedIn: boolean = false; // Track login state
+  constructor(public dialog: MatDialog,
+    private router: Router, private snackBar: MatSnackBar
+  ) {}
   isMenuOpen = false;
    a ="\assets\images\cross.png";
   toggleMenu() {
@@ -38,24 +41,58 @@ export class HomeComponent implements OnInit {
        this.isMenuOpen = false; // Close the menu if clicked outside
      }
    }
-  openLoginDialog() {
-    this.dialog.open(LoginComponent, {
-      width: '400px', // Width of the dialog
-      height: 'auto', // Automatic height adjustment
-      disableClose: true, // Prevent closing on outside click (optional)
-    });
+   openLoginDialog(): void {
+    if (!this.isLoggedIn) {
+      // Open the login dialog only if not logged in
+      this.dialog.open(LoginComponent, {
+        width: '400px',
+        height: 'auto',
+        disableClose: false,
+      }).afterClosed().subscribe(result => {
+        
+        this.checkLoginStatus();
+      });
+    }
   }
+  logout(): void {
+    localStorage.removeItem('token'); // Remove token
+    localStorage.removeItem('userName'); // Remove token
+    this.isLoggedIn = false; // Update login state
+    this.router.navigate(['/']); // Optionally navigate to home or login page
+       // Show success popup message
+       this.snackBar.open('Logout successful!', 'Close', {
+        duration: 3000, // Duration in milliseconds
+        panelClass: ['success-snack-bar'], // Optional: add custom styles
+      });
 
+  }
   openSignupDialog() {
     this.dialog.open(SignupComponent ,{
       width: '500px', // Width of the dialog
       height: 'auto', // Automatic height adjustment
-      disableClose: true, // Prevent closing on outside click (optional)
+      disableClose: false, // Prevent closing on outside click (optional)
     
     });
   }
 
   ngOnInit() {
+    this.checkLoginStatus(); 
+  }
+  checkLoginStatus(): void {
+    const token = localStorage.getItem('token');
+    this.isLoggedIn = !!token; // Set to true if token exists
+  }
+  scrollToAbout() {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  scrollToContact() {
+    const aboutSection = document.getElementById('contact');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
 }

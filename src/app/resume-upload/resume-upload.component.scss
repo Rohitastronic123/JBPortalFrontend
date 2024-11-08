@@ -1,0 +1,164 @@
+/* General container styles */
+div {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    padding: 30px;
+    max-width: 800px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Header Styles */
+  h2 {
+    text-align: center;
+    color: #3f51b5;
+    font-size: 26px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    animation: fadeInUp 1.5s ease-in-out;
+  }
+  
+  /* Upload Section */
+  input[type="file"] {
+    display: none;
+  }
+  
+  .file-upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #4CAF50;
+    border-radius: 50px;
+    background-color: #fff;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .file-upload-container:hover {
+    background-color: #f2f2f2;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .file-upload-container .file-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .file-upload-container .file-icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #4CAF50;
+  }
+  
+  /* Form Section */
+  form {
+    display: flex;
+    flex-wrap: wrap; /* Allows the input fields to wrap into multiple rows */
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 1.5s ease-in-out;
+  }
+  
+  /* Form Row for Input Fields */
+  .form-row {
+    display: flex;
+    flex: 2; /* Allow each form row to take equal space */
+    flex-basis: calc(50% - 10px); /* 50% width for two inputs per row, with gap between them */
+    gap: 10px;
+  }
+  
+  /* Input Field Styles */
+  input, textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    font-size: 16px;
+    transition: border 0.3s ease;
+    background-color: #fff;
+  }
+  
+  input:focus, textarea:focus {
+    border: 2px solid #4CAF50;
+    outline: none;
+  }
+  
+  /* Label Styles */
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+    text-transform: uppercase;
+  }
+  
+  /* Button Styles */
+  button {
+    padding: 12px 25px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Animation for Section Appearance */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    h2 {
+      font-size: 20px;
+    }
+  
+    form {
+      width: 100%;
+    }
+  
+    .file-upload-container {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    input, textarea {
+      font-size: 14px;
+    }
+  
+    .form-row {
+      flex: 1 1 100%; /* Stack the fields on small screens */
+    }
+  }
+  
