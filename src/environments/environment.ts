@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  backendurl: "http://localhost:8081/api/auth",
-  pythonBackendUrl: 'http://localhost:5000' // Python backend
+ 
+ 
 };
 
 /*

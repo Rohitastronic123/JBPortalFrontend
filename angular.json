@@ -33,7 +33,8 @@
             ],
             "scripts": [
                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            ],
+              "baseHref": "/JBPortalFrontend/"
           },
           "configurations": {
             "production": {
@@ -58,7 +59,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "baseHref": "/JBPortalFrontend/"  
             }
           }
         },

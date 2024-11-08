@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { env } from 'process';
 interface LoginResponse {
   message: string;
   token: string; 
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
       }
   
       // Call the login API
-      this.http.post<LoginResponse>(`${environment.backendurl}/login`, formData, { headers, observe: 'response' })
+      this.http.post<LoginResponse>(`${env.backendurl}/login`, formData, { headers, observe: 'response' })
         .pipe(
           catchError(error => {
             console.error('Login error', error);

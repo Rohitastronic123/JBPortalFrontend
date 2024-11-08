@@ -30,11 +30,18 @@ export class DashboardComponent implements OnInit {
   jobs: Job[] = []; // Mock data for jobs
   applications: Application[] = []; // Mock data for applications
   messages: Message[] = []; // Mock data for messages
+  
+  // Add the isSidebarOpen property to control sidebar visibility
+  isSidebarOpen: boolean = false; 
+
   constructor(private router: Router) {}
+
   displayedColumns: string[] = ['jobTitle', 'status', 'actions'];
+
   navigateTo(route: string): void {
     this.router.navigate([route]);
   }
+
   ngOnInit() {
     this.userName = localStorage.getItem('userName');
     this.loadJobs();
@@ -43,16 +50,13 @@ export class DashboardComponent implements OnInit {
   }
 
   loadJobs() {
-    // Fetch jobs from backend or mock data
     this.jobs = [
       { id: 1, title: 'Frontend Developer', company: 'TechCorp', location: 'New York' },
       { id: 2, title: 'Backend Developer', company: 'Innovatech', location: 'San Francisco' }
-      // Add more jobs as needed
     ];
   }
 
   loadApplications() {
-    // Fetch applications from backend or mock data
     this.applications = [
       { id: 1, jobTitle: 'Frontend Developer', status: 'Interview Scheduled' },
       { id: 2, jobTitle: 'Backend Developer', status: 'Applied' }
@@ -60,7 +64,6 @@ export class DashboardComponent implements OnInit {
   }
 
   loadMessages() {
-    // Fetch messages from backend or mock data
     this.messages = [
       { id: 1, sender: 'HR - TechCorp', content: 'We are pleased to invite you to an interview.' },
       { id: 2, sender: 'Innovatech', content: 'Your application has been received.' }
@@ -81,5 +84,10 @@ export class DashboardComponent implements OnInit {
 
   viewMessage(messageId: number) {
     // Handle viewing message
+  }
+
+  // Method to toggle the sidebar visibility
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 }

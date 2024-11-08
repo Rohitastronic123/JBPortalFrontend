@@ -62,20 +62,21 @@ background-color: #0047AB;
 .progress-container {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 0; 
   width: 100%;
-  height: 5px; /* Slightly thicker for better visibility */
-  background-color: rgba(255, 255, 255, 0.2); /* Light background */
+  height: 2px; /* Thicker for better visibility */
+  background-color: rgba(255, 255, 255, 0.1); /* Faint background color */
   overflow: hidden;
+  border-radius: 5px; /* Rounded corners for smoother look */
+}
 
-  .progress-bar {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #ff6b6b, #f06595, #e056fd); /* Gradient for smoother effect */
-    box-shadow: 0px 2px 8px rgba(255, 105, 135, 0.3); /* Adds a soft shadow */
-    border-radius: 2px; /* Rounds edges for a polished look */
-    transition: width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); /* Smooth transition with easing */
-  }
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #ff6b6b, #f06595, #e056fd); /* Gradient for smoothness */
+  box-shadow: 0px 4px 10px rgba(255, 105, 135, 0.5); /* Soft glow effect */
+  border-radius: 5px; /* Rounding the edges */
+  transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth easing function */
 }
 .custom-hr {
   border: none;
