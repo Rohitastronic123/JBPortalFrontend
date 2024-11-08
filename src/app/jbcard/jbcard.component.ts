@@ -33,7 +33,7 @@ export class JBCardComponent implements OnInit {
       subtitle: 'Improve your skill',
       description: 'Best time to create future.',
       image: './assets/images/resume.jpg',
-      link: '/app-resume-builder2' 
+      link: '/app-resume' 
     },
     {
       title: 'Card Title 2',
