@@ -24,7 +24,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json",
+              "src/ngsw-worker.js"  
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
@@ -32,9 +34,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
-              "baseHref": "/JBPortalFrontend/"
+            "baseHref": "/JBPortalFrontend/"
           },
           "configurations": {
             "production": {
@@ -56,11 +58,14 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "4mb",
                   "maximumError": "5mb"
                 }
-              ],
-              "baseHref": "/JBPortalFrontend/"  
+              ]
+,
+              "baseHref": "/JBPortalFrontend/",
+              "serviceWorker": false,
+              "ngswConfigPath": "src/ngsw-config.json"  
             }
           }
         },
@@ -90,7 +95,9 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json",
+              "src/ngsw-worker.js"  
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",

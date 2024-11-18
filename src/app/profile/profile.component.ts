@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { env } from 'process';
 interface LoginResponse {
   message: string;
   token: string;
@@ -46,7 +45,7 @@ if (token) {
   const authorizationHeader = `Bearer ${token}`;
 
   // Make the API call with token as a query parameter
-  this.http.post<LoginResponse>(`${env.backendurl}/user?authorization=${encodeURIComponent(authorizationHeader)}`, {})
+  this.http.post<LoginResponse>(`${environment.backendurl}/user?authorization=${encodeURIComponent(authorizationHeader)}`, {})
     .subscribe({
       next: (data) => {
         this.userData = data.user;

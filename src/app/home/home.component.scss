@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   padding: 0 16px;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -26,17 +26,54 @@
   .menu-button {
     display: none; // Hide on larger screens
   }
-
   .desktop-nav {
-    display: flex; // Show navigation items
-    justify-content: flex-end; // Align buttons to the right
-    gap: 16px; // Optional: Add space between buttons
-
-    // Center the router links
-    & > .nav-button {
-      margin: 0 auto; // Center the buttons in the space they occupy
+    display: flex;
+    gap: 15px; /* Space between buttons */
+  
+    .nav-button {
+      color: #fff;
+      position: relative;
+     
+      font-size: 1rem;
+      padding: 10px 15px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #ffeb3b; /* Change color on hover */
+      }
+  
+      /* Underline animation on hover */
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background-color: #ffeb3b;
+        transition: width 0.3s ease;
+      }
+  
+      &:hover::after {
+        width: 100%; /* Full-width underline on hover */
+      }
+  
+      /* Active state styles */
+      &.active {
+        color: #ffeb3b;
+      }
+  
+      /* Persistent underline for active button */
+      &.active::after {
+        width: 100%;
+        background-color: #ffeb3b;
+      }
     }
   }
+  
 
   @media (max-width: 768px) {
     .desktop-nav {
@@ -49,7 +86,8 @@
   }
 }
 ::ng-deep .mat-toolbar.mat-primary{
-background-color: #0047AB;
+background-color: teal;
+height: 80px;
 }
 .nav-button {
   margin: 20px;
@@ -145,6 +183,49 @@ background-color: #0047AB;
     }
   }
   
+}
+.menu-button img {
+  filter: brightness(0) invert(1); /* White color for menu icon */
+  transition: transform 0.3s ease; /* Smooth animation */
+  
+  &:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+}
+
+/* Custom menu styling */
+.custom-menu .mat-menu-item {
+  color: white; /* White text */
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease; /* Smooth color transition */
+  
+  &:hover {
+    color: #ffeb3b; /* Yellow color on hover */
+  }
+
+  /* Underline animation */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffeb3b; /* Yellow underline */
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%; /* Full-width underline on hover */
+  }
+}
+::ng-deep .mat-menu-panel{
+  background-color: teal;
+}
+::ng-deep .mat-menu-item{
+  color: #fff;
 }
 
 // #about {

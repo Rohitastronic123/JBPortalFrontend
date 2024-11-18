@@ -1,6 +1,7 @@
+
 <mat-toolbar color="primary" class="custom-toolbar">
   <span class="logo">
-    <img src="./assets/images/logo.gif" alt="Logo" />
+    <img  rel="preload"  src="./assets/images/logo.gif" alt="Logo" />
   </span>
 
   <span class="spacer"></span>
@@ -23,7 +24,7 @@
          [@fadeInOut]>
   </span>
   
-  <mat-menu #menu="matMenu">
+  <mat-menu #menu="matMenu" class="menu-item">
     <button mat-menu-item routerLink="/app-resume">Resume</button>
     <button mat-menu-item (click)="scrollToAbout()">About</button>
     <button mat-menu-item (click)="scrollToContact()">Contact</button>

@@ -1,16 +1,19 @@
 <mat-sidenav-container class="sidenav-container">
   <!-- Sidebar -->
-  <mat-sidenav #sidenav mode="over" [(opened)]="isSidebarOpen" class="sidebar">
+  <mat-sidenav #sidenav mode="over" [(opened)]="isSidebarOpen" class="sidebar" [@sidenavAnimation]="isSidebarOpen ? 'open' : 'closed'">
     <div class="sidebar-content">
-      <h2  (click)="navigateTo('')">Menu</h2>
+      <h2 (click)="navigateTo('')">Menu</h2>
+      <button mat-button class="back-button" (click)="isSidebarOpen = false">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
       <button mat-button (click)="navigateTo('profile')">Profile</button>
-      <!-- <button mat-button (click)="navigateTo('resumeupdate')">Update Resume</button> -->
       <button mat-button (click)="navigateTo('jobs')">Job Listings</button>
       <button mat-button (click)="navigateTo('applications')">Applications</button>
       <button mat-button (click)="navigateTo('messages')">Messages</button>
-      <button mat-button (click)="navigateTo('messages')">Logout</button>
+      <button mat-button (click)="logout()">Logout</button>
     </div>
   </mat-sidenav>
+  
 
   <!-- Main Content -->
   <mat-sidenav-content class="main-content">
@@ -96,5 +99,7 @@
         </mat-card>
       </div>
     </div>
+    
   </mat-sidenav-content>
+  
 </mat-sidenav-container>

@@ -1,0 +1,95 @@
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  padding-right: 40px; // Padding to avoid overlap with close button
+}
+
+.job-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: rgba(0, 128, 128, 0.55); // More readable teal overlay
+  color: black;
+  padding: 24px; // Adds padding inside the dialog
+  position: relative; // Allows positioning of child elements
+  border-radius: 8px; // Adds rounded corners
+}
+
+.full-width {
+  width: 100%;
+}
+
+.search-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+// button {
+//   width: 100%;
+//   max-width: 150px;
+// }
+
+.results {
+  margin-top: 20px;
+}
+
+.results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.results ul li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.analysis {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: teal;
+  color: black; // Makes text readable on teal background
+  border-radius: 5px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px !important;
+  right: 12px !important; 
+  color: black; // Matches text color for consistency
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.close-btn mat-icon {
+  font-size: 24px;
+}
+.recommendations {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: teal;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.recommendations ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommendations ul li {
+  padding: 8px;
+  background-color: teal;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}

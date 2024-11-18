@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { env } from 'process';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 interface LoginResponse {
   message: string;
   token: string; 
@@ -17,79 +17,123 @@ interface LoginResponse {
     state: string;
   };
 }
+interface CaptchaResponse {
+  captchaImage: string; // Base64-encoded CAPTCHA image
+  captchaId: string;    // Unique CAPTCHA ID
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  token="";
   loginForm: FormGroup;
+  captchaImage: SafeUrl = ''; // Update the type to SafeUrl
 
-
+  captchaId: string = ''; // CAPTCHA ID from the backend
 
   ngOnInit() {
-   
+    this.fetchCaptcha(); // Fetch CAPTCHA when the component is initialized
   }
 
-  constructor(private fb: FormBuilder,private http: HttpClient, private router: Router,private dialogRef: MatDialogRef<LoginComponent>, private snackBar: MatSnackBar) {
-    // Initialize the form with validation
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private dialogRef: MatDialogRef<LoginComponent>,
+    private snackBar: MatSnackBar,
+    private sanitizer: DomSanitizer
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]], // Email validation
-      password: ['', [Validators.required]] // Password validation
+      email: ['', [Validators.required, Validators.email]], 
+      password: ['', [Validators.required]], 
+      captchaAnswer: ['', [Validators.required]], // Field for CAPTCHA answer
     });
   }
 
+  // Fetch CAPTCHA from backend
+  fetchCaptcha() {
+    this.http.get<CaptchaResponse>(`${environment.backendurl}/captcha/generate`, { observe: 'response' })
+      .subscribe(response => {
+        const base64Captcha = response.body.captchaImage;
+        if (base64Captcha) {
+          // Sanitize and cast SafeUrl to string
+          this.captchaImage = this.sanitizer.bypassSecurityTrustUrl(`${base64Captcha}`) as string;
+        }
+        
+
+        this.captchaId = response.body.captchaId || '';
+      }, error => {
+        console.error('Failed to fetch CAPTCHA:', error);
+        this.snackBar.open('Failed to load CAPTCHA. Please try again.', 'Close', {
+          duration: 3000,
+          panelClass: ['error-snack-bar'],
+        });
+      });
+  }
+
+  // Login handler
   onLogin() {
-    console.log('Login method called'); // Debug log
     if (this.loginForm.valid) {
-      const formData = this.loginForm.value; // Get form data
-      console.log('Login Data:', formData); // Log data to console
-  
-      // Create headers and add Authorization if needed
+      const formData = {
+        ...this.loginForm.value,
+        captchaId: this.captchaId, // Include CAPTCHA ID
+      };
+
       let headers = new HttpHeaders();
-      const token = localStorage.getItem('token'); // Retrieve token from local storage if it exists
+      const token = localStorage.getItem('token'); 
       if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`); // Set Authorization header with 'Bearer'
+        headers = headers.set('Authorization', `Bearer ${token}`);
       }
-  
-      // Call the login API
-      this.http.post<LoginResponse>(`${env.backendurl}/login`, formData, { headers, observe: 'response' })
+
+      this.http.post<LoginResponse>(`${environment.backendurl}/login`, formData, { headers, observe: 'response' })
         .pipe(
           catchError(error => {
-            console.error('Login error', error);
-            return throwError(error); // Handle the error as needed
+            console.error('Login error:', error);
+
+            let errorMessage = 'An error occurred. Please try again later.';
+            if (error.error.message) {
+              errorMessage = error.error.message;
+            } else if (error.status === 400) {
+              errorMessage = 'Invalid CAPTCHA or login credentials.';
+            }
+            this.fetchCaptcha();
+            this.snackBar.open(errorMessage, 'Close', {
+              duration: 3000,
+              panelClass: ['error-snack-bar'],
+            });
+            return throwError(error);
           })
         )
         .subscribe(response => {
-          console.log('Login successful:', response);
-          
-          // Get the new token from the response body
-          const newToken = response.body.token; 
-          const userName = response.body.user.name; // Get user's name from response
+          const newToken = response.body.token;
+          const userName = response.body.user.name;
+
           if (newToken) {
-            // Store the token in local storage
             localStorage.setItem('token', newToken);
-            localStorage.setItem('userName', userName); // Save user name
-            localStorage.setItem('tokenTimestamp', Date.now().toString());
-            console.log('Token stored in local storage:', newToken);
+            localStorage.setItem('userName', userName);
           }
-          
-          // Show success popup message
+
           this.snackBar.open('Login successful!', 'Close', {
-            duration: 3000, // Duration in milliseconds
-            panelClass: ['success-snack-bar'], // Optional: add custom styles
+            duration: 3000,
+            panelClass: ['success-snack-bar'],
           });
-  
+
           this.dialogRef.close();
-          // Handle successful login response (e.g., navigate to dashboard)
           this.router.navigate(['/dashboard']);
-          
         });
     } else {
-      console.log('Form is invalid');
+      
+      this.snackBar.open('Please complete all fields.', 'Close', {
+        duration: 3000,
+        panelClass: ['error-snack-bar'],
+      });
     }
   }
-  
 
+  // Refresh CAPTCHA manually
+  refreshCaptcha() {
+    this.fetchCaptcha(); // Call the CAPTCHA fetching method again
+  }
 }

@@ -12,6 +12,20 @@
       <input matInput type="password" formControlName="password">
       <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</mat-error>
     </mat-form-field>
+    <div class="captcha-container">
+      <img [src]="captchaImage" alt="CAPTCHA">
+      <button type="button" mat-button (click)="refreshCaptcha()">
+        <mat-icon>refresh</mat-icon>
+       
+      </button>
+      
+    </div>
+    
+    <mat-form-field>
+      <mat-label>Enter CAPTCHA</mat-label>
+      <input matInput type="text" formControlName="captchaAnswer">
+      <mat-error *ngIf="loginForm.get('captchaAnswer')?.hasError('required')">CAPTCHA is required.</mat-error>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

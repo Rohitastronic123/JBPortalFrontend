@@ -30,10 +30,15 @@ import { ContactComponent } from './contact/contact.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProfileComponent } from './profile/profile.component';
 import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { JobSearchPopupComponent } from './job-search-popup/job-search-popup.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     HomeComponent,
     LoginComponent,
     SignupComponent,
@@ -45,8 +50,9 @@ import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
     AboutComponent,
     ContactComponent,
     ProfileComponent,
-    ResumeUploadComponent
-  ],
+    ResumeUploadComponent,
+    JobSearchPopupComponent,
+      ],
   imports: [
     BrowserModule,
     MatProgressSpinnerModule,
@@ -71,7 +77,8 @@ import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
     MatIconModule,
     MatCardModule,
     MatCheckboxModule,
-    MatSliderModule
+    MatSliderModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

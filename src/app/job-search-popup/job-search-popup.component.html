@@ -1,0 +1,31 @@
+<!-- job-search-popup.component.html -->
+<h2 style="text-align: center;">Job Search</h2>
+
+<div class="job-search-container">
+  <button mat-icon-button (click)="onClose()" class="close-btn" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+  
+  <form (ngSubmit)="onSearch()" class="job-search-form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Enter Job Title</mat-label>
+      <input matInput [(ngModel)]="jobTitle" name="jobTitle" (input)="onInputChange()" required />
+    </mat-form-field>
+    
+    <div class="search-btn">
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </div>
+  </form>
+
+  <div *ngIf="jobResults.length" class="recommendations">
+    <h3>Recommended Jobs</h3>
+    <ul>
+      <li *ngFor="let job of jobResults">{{ job }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="analysis" class="analysis">
+    <h3>Analysis</h3>
+    <p>{{ analysis }}</p>
+  </div>
+</div>

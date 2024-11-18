@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { MatSnackBar } from '@angular/material';
 interface Job {
   id: number;
   title: string;
@@ -23,7 +24,19 @@ interface Message {
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [
+    trigger('sidenavAnimation', [
+      state('open', style({ width: '350px', opacity: 1 })),
+      state('closed', style({ width: '0px', opacity: 0 })),
+      transition('open => closed', [
+        animate('0.3s ease-in-out')
+      ]),
+      transition('closed => open', [
+        animate('0.3s ease-in-out')
+      ]),
+    ])
+  ]
 })
 export class DashboardComponent implements OnInit {
   userName: string | null = '';
@@ -33,8 +46,10 @@ export class DashboardComponent implements OnInit {
   
   // Add the isSidebarOpen property to control sidebar visibility
   isSidebarOpen: boolean = false; 
+  isLoggedIn: boolean=true;
 
-  constructor(private router: Router) {}
+
+  constructor(private router: Router,private snackBar: MatSnackBar) {}
 
   displayedColumns: string[] = ['jobTitle', 'status', 'actions'];
 
@@ -69,7 +84,19 @@ export class DashboardComponent implements OnInit {
       { id: 2, sender: 'Innovatech', content: 'Your application has been received.' }
     ];
   }
+  logout(): void {
+    localStorage.removeItem('token'); // Remove token
+    localStorage.removeItem('userName'); // Remove token
+    localStorage.removeItem('tokenTimestamp'); // Remove token
+    this.isLoggedIn = false; // Update login state
+    this.router.navigate(['/']); // Optionally navigate to home or login page
+       // Show success popup message
+       this.snackBar.open('Logout successful!', 'Close', {
+        duration: 3000, // Duration in milliseconds
+        panelClass: ['success-snack-bar'], // Optional: add custom styles
+      });
 
+  }
   goToProfile() {
     // Navigate to profile page
   }

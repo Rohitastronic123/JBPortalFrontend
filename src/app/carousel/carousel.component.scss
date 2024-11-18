@@ -1,32 +1,184 @@
+/* Adjust carousel layout */
+#carouselExample {
+  margin-top: 2px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  perspective: 1000px; /* Adds perspective for 3D effect */
+
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    margin-top: 2px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 2px;
+  }
+}
+
+/* Carousel images */
+.carousel-inner {
+  position: relative;
+  height: 500px; /* Fix height to control the size of the carousel */
+  width: 100%;
+
+  @media (max-width: 992px) {
+    height: 300px; /* Adjust height for tablets */
+  }
+
+  @media (max-width: 576px) {
+    height: 250px; /* Adjust height for mobile screens */
+  }
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease, opacity 1s ease;
+  opacity: 0;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  will-change: transform, opacity;
+
+  &:nth-child(1) {
+    transform: translateZ(-50px) rotateY(-30deg); /* Position the first image in the stack */
+  }
+  &:nth-child(2) {
+    transform: translateZ(0) rotateY(0deg); /* The active image */
+  }
+  &:nth-child(3) {
+    transform: translateZ(50px) rotateY(30deg); /* Position the third image in the stack */
+  }
+
+  &.active {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg); /* Active item becomes centered */
+  }
+}
+
+/* Carousel image zoom and smooth transition */
 .carousel-inner img {
-  margin-top:65px;
-    width: 100%;
-    height: 50%; /* Adjust height as needed */
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transition: transform 0.5s ease; /* Smooth zoom-in effect */
+  border-radius: 10px; /* Soft edges for the images */
   
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: black; /* Optional: customize control colors */
+  &:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
   }
-  .carousel-image {
-    width: 100%;
-    aspect-ratio: 16 / 9; // This sets a 16:9 aspect ratio for the images
-  
-    @media (max-width: 992px) { // Tablet screens
-      aspect-ratio: 4 / 3; // Change aspect ratio for tablets
-    }
-  
-    @media (max-width: 576px) { // Mobile screens
-      aspect-ratio: 1 / 1; // Change aspect ratio to square for mobile screens
-    }
+
+  /* Responsive zoom adjustments */
+  @media (max-width: 992px) {
+    object-fit: fill; /* Adjust object fit for tablets */
   }
-  
-  /* Optional: Adjust carousel controls for better mobile view */
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 5%;
-    background-color: whitesmoke;
+
+  @media (max-width: 576px) {
+    object-fit: fill; /* Adjust object fit for mobile screens */
   }
-  #carouselExample{
-    margin-top: 1px;
+}
+
+/* Customize control buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  background-color: rgba(255, 255, 255, 0.3); /* Light overlay */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Ensure controls are on top of images */
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
   }
+
+  /* Control buttons responsiveness */
+  @media (max-width: 992px) {
+    width: 6%;
+  }
+
+  @media (max-width: 576px) {
+    width: 8%;
+  }
+}
+
+/* Control icons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darken on hover */
+  }
+
+  /* Control icons responsiveness */
+  @media (max-width: 992px) {
+    width: 25px;
+    height: 25px;
+  }
+
+  @media (max-width: 576px) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Indicators (dots) */
+.carousel-indicators li {
+  background-color: #000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    background-color: #007bff; /* Change active indicator color */
+  }
+
+  /* Indicators responsiveness */
+  @media (max-width: 992px) {
+    width: 8px;
+    height: 8px;
+  }
+
+  @media (max-width: 576px) {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Optional: Animation for smoother transitions between slides */
+.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+/* Add a slight zoom effect to the carousel items */
+@keyframes zoomEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#carouselExample .carousel-item img {
+  animation: zoomEffect 6s ease-in-out infinite;
+}
